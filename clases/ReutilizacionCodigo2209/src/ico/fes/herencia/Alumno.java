@@ -1,12 +1,18 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ico.fes.herencia;
 
+/**
+ *
+ * @author ricar
+ */
+public class Alumno extends Persona {
+    private String numeroCuenta;
+    private String carrera;
 
-public class Alumno extends Persona{
-    String numeroCuenta;
-    String carrera;
-
- public Alumno() {
+    public Alumno() {
     }
 
     public Alumno(String numeroCuenta, String carrera) {

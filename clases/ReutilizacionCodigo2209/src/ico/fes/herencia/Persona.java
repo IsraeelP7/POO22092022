@@ -6,35 +6,42 @@ package ico.fes.herencia;
 
 /**
  *
- * @author israelpsiu7
+ * @author ricar
  */
 public class Persona {
-    private String nombre;
-    private int edad;
+    private String Nombre;
+    private int Edad;
 
-    public String getNombre() {
-        return nombre;
+    public Persona() {
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public Persona(String Nombre, int Edad) {
+        this.Nombre = Nombre;
+        this.Edad = Edad;
     }
 
     public int getEdad() {
-        return edad;
+        return Edad;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setEdad(int Edad) {
+        this.Edad = Edad;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", edad=" + edad + '}';
-    }
+        return "Persona{" + "Nombre=" + Nombre + ", Edad=" + Edad + '}';
+   }
     
-    public void dormir(){
-        System.out.println(this.nombre +"esta durmiendo...");
-    }
-    
+    public void dormir() {
+        System.out.println(this.Nombre + "esta durmiendo...");
+}
 }
