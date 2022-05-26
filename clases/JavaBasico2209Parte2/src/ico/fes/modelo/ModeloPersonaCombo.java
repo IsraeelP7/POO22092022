@@ -1,26 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ico.fes.modelo;
 
+import ico.fes.db.PersonaDAO;
 import ico.fes.herencia.Persona;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
+import org.sqlite.SQLiteException;
 
-/**
- *
- * @author israelpsiu7
- */
-public class ModeloPersonaCombo implements ComboBoxModel<Persona>{
+
+public class ModeloPersonaCombo implements ComboBoxModel<Persona> {
     private ArrayList<Persona> datos;
     private Persona selected;
-    
-    public ModeloPersonaCombo(){
+
+    public ModeloPersonaCombo() {
     }
-    
-    public ModeloPersonaCombo(ArrayList datos, Persona selected){
+
+    public ModeloPersonaCombo(ArrayList datps, Persona selected) {
         this.datos = datos;
         this.selected = selected;
     }
@@ -45,7 +42,7 @@ public class ModeloPersonaCombo implements ComboBoxModel<Persona>{
 
     @Override
     public int getSize() {
-        //regresará el numero de elementos a mostrar
+        //regresara numero de elementos a mostrar 
         return datos.size();
     }
 
@@ -55,26 +52,40 @@ public class ModeloPersonaCombo implements ComboBoxModel<Persona>{
     }
 
     @Override
-    public void addListDataListener(ListDataListener ll) {
-        
+    public void addListDataListener(ListDataListener l) {
     }
 
     @Override
-    public void removeListDataListener(ListDataListener ll) {
-        
+    public void removeListDataListener(ListDataListener l) {
     }
     
     public void consultarBaseDatos(){
-        //simular una consulta a una base de datos
-        datos=new ArrayList<Persona>();
-        //conextiarn a bd
-        //consulta a SQL
-        datos.add(new Persona("Jose",19));
-        datos.add(new Persona("Maria",21));
-        datos.add(new Persona("Jesus",33));
-        datos.add(new Persona("Diana",22));
+        PersonaDAO pdao = new PersonaDAO();
+        
+        try {
+            //simular una consulta de base de datos
+            datos = pdao.obtenerTodo();
+            // se conecta a base de datos
+            // se consulta
+//        datos.add(new Persona("Jose", 19));
+//        datos.add(new Persona("Maria", 21));
+//        datos.add(new Persona("Jesus", 33));
+//        datos.add(new Persona("Diana", 22));
+        } catch (SQLiteException ex) {
+            ex.printStackTrace();
+        }
     }
     
-    
+    public void agregarPersona (Persona p){
+        //Insert BD
+        PersonaDAO pdao = new PersonaDAO();
+        datos.add(p);
+        
+        try {
+            pdao.insertar(p);
+        } catch (SQLiteException ex) {
+            ex.printStackTrace();
+        }
+    }
     
 }
